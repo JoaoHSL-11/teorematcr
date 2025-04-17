@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 
+# Inicializa o aplicativo Flask
 app = Flask(__name__)
 CORS(app)
 
@@ -35,6 +37,10 @@ def chinese_remainder_theorem(congruences):
 
     return {'x': x % M, 'mod': M}
 
+@app.route('/')
+def home():
+    return "Bem-vindo ao Teorema do Resto Chinês! Use a rota /resolver para resolver sistemas de congruências."
+
 @app.route('/resolver', methods=['POST'])
 def resolver():
     data = request.get_json()
@@ -56,5 +62,7 @@ def resolver():
         return jsonify(result)
     return jsonify({'error': 'Sistema inválido.'}), 400
 
+# A configuração da execução da aplicação Flask para quando rodar no Render
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # A porta que o Render usará
+    app.run(host='0.0.0.0', port=port, debug=True)
