@@ -5,6 +5,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+def check_primo_par_a_par(modulos):
+    return all(gcd(a, b) == 1 for a, b in combinations(modulos, 2))
+
 def mod_inverse(a, m):
     m0, x0, x1 = m, 0, 1
     if m == 1:
@@ -22,9 +25,16 @@ def normalize_congruence(a, b, m):
     return (b * inv) % m
 
 def chinese_remainder_theorem(congruences):
-    M = 1
+    modulos = []
     for c in congruences:
-        M *= c['m']
+        modulos.append(c['m'])
+
+    if not check_primo_par_a_par(modulos):
+        return None
+
+    M = 1
+    for x in modulos:
+        M *= x
 
     x = 0
     for c in congruences:
@@ -35,7 +45,6 @@ def chinese_remainder_theorem(congruences):
         x += c['b'] * Mi * inv
 
     return {'x': x % M, 'mod': M}
-
 @app.route('/')
 def home():
     return render_template('index.html')
