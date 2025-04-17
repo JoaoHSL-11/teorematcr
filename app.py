@@ -68,9 +68,13 @@ def resolver():
         m = c.get('m')
 
         if None in [a, b, m]:
-            return jsonify({'error': 'Dados incompletos'}), 400
+            return jsonify({'error': 'Dad   os incompletos'}), 400
 
         try:
+            if gcd(a, m) == gcd(a,b):
+                div = gcd(a, m)
+                a = a//div
+                b = b//div
             b_normalized = normalize_congruence(a, b, m)
             if b_normalized is None:
                 raise Exception("Sem inverso")
