@@ -28,11 +28,12 @@ function calculate() {
     }
   });
 
-  fetch("http://localhost:5000/resolver", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ congruences }),
+  fetch('/resolver', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ congruences })
   })
+  
     .then((response) => response.json())
     .then((data) => {
       if (data.x !== undefined) {

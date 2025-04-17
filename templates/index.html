@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teorema do Resto Chinês</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
   <div class="container">
@@ -13,9 +12,9 @@
       <h1>Teorema do Resto Chinês</h1>
       <hr />
       <p>
-    Utilize esta ferramenta para resolver sistemas de congruências lineares simultâneas com o Teorema do Resto Chinês. <br />
-    Insira as congruências no formato <strong>a·x ≡ b (mod m)</strong> nos campos abaixo.
-    </p>
+        Utilize esta ferramenta para resolver sistemas de congruências lineares simultâneas com o Teorema do Resto Chinês. <br />
+        Insira as congruências no formato <strong>a·x ≡ b (mod m)</strong> nos campos abaixo.
+      </p>
       <div id="congruences">
         <div class="congruence" id="congruence-1">
           Congruência 1:
@@ -32,5 +31,8 @@
       <div class="output" id="output"></div>
     </div>
   </div>
+
+  <!-- IMPORTAÇÃO DO JS NO FINAL DO BODY -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
